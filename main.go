@@ -141,11 +141,11 @@ func main() {
 	for {
 		ret, _, err := getMessageW.Call(uintptr(unsafe.Pointer(&msg)), 0, 0, 0)
 		if ret == 0 {
-			log.Println("收到 WM_QUIT, 程序退出")
-			break
+			//log.Println("收到 WM_QUIT, 程序退出")
+			continue
 		} else if ret == uintptr(^uint(0)) { // -1
 			log.Printf("错误: GetMessageW 调用失败, 错误信息: %v", err)
-			break
+			continue
 		}
 		translateMessage.Call(uintptr(unsafe.Pointer(&msg)))
 		dispatchMessage.Call(uintptr(unsafe.Pointer(&msg)))
